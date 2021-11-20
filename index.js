@@ -1,6 +1,15 @@
 const inquirer = require("inquirer");
 
 const fact = (n) => {
+    let factValue = n
+    for (let i=1; i < n; i++) {
+        newFactValue = (i)
+        factValue = factValue * newFactValue
+    }
+    return (factValue)
+}
+
+const factRecursive = (n) => {
     if (n >= 1) {
         return (
             n * fact(n-1)
@@ -11,11 +20,10 @@ const fact = (n) => {
 }
 
 const fib = (n) => {
-    console.log("You are using a for loop!");
     const fibSeq = [1, 1]
     for (let i=1; i < n-1; i++) {
         fibNum = fibSeq[i-1] + fibSeq[i]
-        fibSeq.puscah(fibNum)
+        fibSeq.push(fibNum)
     }
     return(fibSeq.slice(-1)[0])
 }
@@ -40,15 +48,40 @@ const start = () => {
             message: "Would you like to calculate a factorial, or calculate the number at a certain position of the Fibonacci sequence?"
         })
         .then((answer) => {
+
             answer.whatCalc === "Calculate a factorial"
             ? inquirer
             .prompt({
-                name: "whatNum",
-                type: "input",
-                message: "Please enter an integer",
+                name: "howCalc",
+                type: "list",
+                choices: [
+                    "Use a for loop",
+                    "Use recursive code",
+                ],
+                message: "How would you like to calculate your answer?"
             })
             .then((answer) => {
-                console.log("The factorial of", answer.whatNum, "is", fact(answer.whatNum));
+                answer.howCalc === "Use a for loop"
+                ? inquirer.prompt({
+                    name: "whatNum",
+                    type: "input",
+                    message: "Please enter an integer",
+                })
+                .then((answer) => {
+                    console.time("Time to calculate using a for-loop:");
+                    console.log("The factorial of", answer.whatNum, "is", fact(answer.whatNum));
+                    console.timeEnd("Time to calculate using a for-loop:");
+                })
+                : inquirer.prompt({
+                    name: "whatNum",
+                    type: "input",
+                    message: "Please enter an integer",
+                })
+                .then((answer) => {
+                    console.time("Time to calculate using recursion:");
+                    console.log("The factorial of", answer.whatNum, "is", factRecursive(answer.whatNum));
+                    console.timeEnd("Time to calculate using recursion:");
+                })
             })
             : inquirer
             .prompt({
@@ -59,7 +92,8 @@ const start = () => {
                     "Use recursive code",
                 ],
                 message: "How would you like to calculate your answer?"
-            }).then((answer) => {
+            })
+            .then((answer) => {
                 answer.howCalc === "Use a for loop"
                 ? inquirer.prompt({
                     name: "whatNum",
@@ -67,7 +101,9 @@ const start = () => {
                     message: "Please enter an integer",
                 })
                 .then((answer) => {
+                    console.time("Time to calculate using a for-loop:");
                     console.log("The number at position", answer.whatNum, "of the Fibonacci sequence is", fib(answer.whatNum));
+                    console.timeEnd("Time to calculate using a for-loop:");
                 })
                 : inquirer.prompt({
                     name: "whatNum",
@@ -75,8 +111,9 @@ const start = () => {
                     message: "Please enter an integer",
                 })
                 .then((answer) => {
-                    console.log("You are using recursive code!");
+                    console.time("Time to calculate using recursion:");
                     console.log("The number at position", answer.whatNum, "of the Fibonacci sequence is", fibRecursive(answer.whatNum));
+                    console.timeEnd("Time to calculate using recursion:");
                 })
             })
         })
