@@ -18,7 +18,7 @@ const start = () => {
             message: "Please enter an integer",
         })
         .then((answer) => {
-            console.log(fact(answer.whatNum));
+            console.log("The factorial of", answer.whatNum, "is", fact(answer.whatNum));
         }
         )
 }
