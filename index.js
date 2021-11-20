@@ -15,7 +15,7 @@ const fib = (n) => {
     const fibSeq = [1, 1]
     for (let i=1; i < n-1; i++) {
         fibNum = fibSeq[i-1] + fibSeq[i]
-        fibSeq.push(fibNum)
+        fibSeq.puscah(fibNum)
     }
     return(fibSeq.slice(-1)[0])
 }
@@ -35,7 +35,7 @@ const start = () => {
             type: "list",
             choices: [
                 "Calculate a factorial",
-                "Calculatae the number at a certain position of the Fibonacci sequence",
+                "Calculate the number at a certain position of the Fibonacci sequence",
             ],
             message: "Would you like to calculate a factorial, or calculate the number at a certain position of the Fibonacci sequence?"
         })
