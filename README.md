@@ -1,4 +1,4 @@
-This is a Node CLI that I created to quickly practice recursive code. To run, just install inquirer with `npm i` and then run `node index`.
+This is a small Node CLI that I created to quickly practice recursive code. To run, just install inquirer with `npm i` and then run `node index`.
 
 First, you will be prompted to either `Calculate a factorial` or `Calculate the number at a certain position of the Fibonacci sequence`.
 
